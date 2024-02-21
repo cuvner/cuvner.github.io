@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chris Courage</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>CHRIS COURAGE</h1>
+      <h2>Computational Artist/Researcher/Educator</h2>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+    <main class="grid-container">
+      <section id="home" class="grid-item">
+        <h2 class="welcome">Welcome to my site</h2>
+        <p>
+          I'm a computational artist, my work focuses on data and making it
+          physical. Explore my work, research and past projects.
+        </p>
+      </section>
+      <section id="projects" class="grid-item">
+        <h2>Research</h2>
+        <p class="oneLiner">Follow my PhD journey @ ARTS UNI BOURNEMOUTH</p>
+        <p>
+          Computational art, Tangible and embodied interaction, data
+          materialisation
+        </p>
+        <img src="https://via.placeholder.com/150" alt="Project Image" />
+      </section>
+      <section id="about" class="grid-item">
+        <h2>Creative Coding Workshops</h2>
+        <p>Learn to code with me! Workshops held weekly @SciZone Boscombe</p>
+      </section>
+      <section id="contact" class="grid-item">
+        <h2>Work with me</h2>
+        <p>
+          I can help you develop your own practice by adding interaction to a
+          new or existing project.
+        </p>
+      </section>
+      <section id="drawingSection" class="pix">
+        <h2>Draw on the Grid</h2>
+        <div id="pixelCanvas"></div>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            createGrid();
+            var isDrawing = false;
+
+            var canvas = document.getElementById("pixelCanvas");
+            canvas.addEventListener("mousedown", function (e) {
+              isDrawing = true;
+              if (e.target.classList.contains("pixel")) {
+                e.target.style.backgroundColor = "black"; // Change as needed
+              }
+            });
+
+            canvas.addEventListener("mouseup", function () {
+              isDrawing = false;
+            });
+
+            canvas.addEventListener("mouseout", function () {
+              isDrawing = false;
+            });
+
+            canvas.addEventListener("mouseover", function (e) {
+              isDrawing = true;
+              if (isDrawing && e.target.classList.contains("pixel")) {
+                e.target.style.backgroundColor = "#FF00AA"; // Change as needed
+              }
+            });
+          });
+
+          function createGrid() {
+            var container = document.getElementById("pixelCanvas");
+            for (var i = 0; i < 16 * 16; i++) {
+              var pixel = document.createElement("div");
+              pixel.classList.add("pixel");
+              container.appendChild(pixel);
+            }
+          }
+        </script>
+      </section>
+      <section id="projects" class="grid-item">
+        <h2>Our Projects</h2>
+        <p>Discover our latest DIY electronic projects.</p>
+        <img src="https://via.placeholder.com/150" alt="Project Image" />
+      </section>
+      <section id="treeContainer" class="grid-item">
+        <h2 id="startAnimation" class="trees">
+          Click here to see how many trees it took to power your vist to my site
+        </h2>
+        <div id="imageContainer"></div>
+
+        <script>
+          var animationStarted = false;
+
+          document
+            .getElementById("startAnimation")
+            .addEventListener("click", function () {
+              if (!animationStarted) {
+                setInterval(addTreeImage, 1000); // Adds an image every 1 second
+                animationStarted = true; // Prevents multiple intervals
+              }
+            });
+          var treeContainer = document.getElementById("treeContainer");
+
+          function addTreeImage() {
+            var img = document.createElement("img");
+            img.src = "images/tree.png"; // Replace with the path to your tree image
+            img.classList.add("tree-image");
+
+            treeContainer.appendChild(img);
+          }
+
+          function calculateImageSize(numberOfImages) {
+            // Example logic to decrease size as more images are added
+            var baseSize = 100; // Starting size of images
+            var sizeDecrease = numberOfImages * 1; // Decrease size based on the number of images
+
+            var newSize = baseSize - sizeDecrease;
+            return newSize > 10 ? newSize : 10; // Ensure size does not go below 10px
+          }
+        </script>
+      </section>
+      <section id="contact" class="grid-item">
+        <h2>Contact Us</h2>
+        <p id="demo"></p>
+
+        <!-- <script>
+          var count = 0;
+          var maxLineLength = 50; // Maximum number of characters per line
+
+          setInterval(displayHello, 100);
+
+          function displayHello() {
+            var currentText = document.getElementById("demo").innerHTML;
+            var newText = "Hello ";
+            count += newText.length;
+
+            document.getElementById("demo").innerHTML += newText;
+          }
+        </script> -->
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2024 Punk DIY</p>
+    </footer>
+  </body>
+</html>
